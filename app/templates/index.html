@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="AI-Based Drought Severity Prediction and Monitoring System"
+    >
+
+    <title>
+        Drought Severity Mapping
+    </title>
+
+
+    <!-- ======================================================
+         LEAFLET CSS
+         ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- ======================================================
+         YOUR PROJECT CSS
+         ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     PROFESSIONAL TOP NAVIGATION
+     ========================================================= -->
+
+<nav class="ai-navbar">
+
+    <div class="nav-brand">
+        <div class="nav-brand-mark">◉</div>
+
+        <div>
+            <strong>DROUGHT AI</strong>
+            <span>Geospatial Intelligence</span>
+        </div>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#dashboard">Overview</a>
+        <a href="#map-section">Monitoring</a>
+        <a href="#ai-analysis">AI Analysis</a>
+        <a href="#analytics">Analytics</a>
+
+    </div>
+
+    <div class="nav-status">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+    </div>
+
+    
+
+</nav>    
+
+
+<!-- ==========================================================
+     HEADER
+     ========================================================== -->
+
+    <!-- ==========================================================
+     PROFESSIONAL HERO SECTION
+     ========================================================== -->
+
+<header class="main-header">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+
+    <!-- PLATFORM HEADER -->
+    <div class="hero-topbar">
+
+        <div class="platform-brand">
+            <div class="brand-symbol">DI</div>
+
+            <div>
+                <strong>DROUGHT INTELLIGENCE</strong>
+                <span>EARTH OBSERVATION • AI ANALYTICS</span>
+            </div>
+        </div>
+
+        <div class="platform-status">
+            <span class="status-pulse"></span>
+            AI SYSTEM ONLINE
+        </div>
+
+    </div>
+
+
+    <!-- HERO CONTENT -->
+    <div class="hero-main">
+
+        <div class="hero-copy">
+
+            <div class="hero-eyebrow">
+                GEOSPATIAL AI MONITORING PLATFORM
+            </div>
+
+            <h1>
+                Drought Severity
+                <span>Mapping & Prediction</span>
+            </h1>
+
+            <p>
+                AI-powered drought intelligence using environmental
+                indicators, satellite imagery and machine learning
+                to identify, analyse and predict drought severity.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="#map-section" class="hero-primary">
+                    Explore Drought Map
+                    <span>→</span>
+                </a>
+
+                <a href="#ai-analysis" class="hero-secondary">
+                    Run AI Analysis
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- EARTH VISUAL -->
+        <div class="hero-visual">
+
+            <div class="earth-orbit orbit-one"></div>
+            <div class="earth-orbit orbit-two"></div>
+            <div class="earth-orbit orbit-three"></div>
+
+            <div class="earth-core">
+
+                <div class="earth-grid"></div>
+
+                <div class="earth-label">
+                    <strong>EARTH</strong>
+                    <span>OBSERVATION</span>
+                </div>
+
+            </div>
+
+
+            <!-- INTELLIGENCE METRICS -->
+
+            <div class="hero-metric metric-one">
+                <span>MODEL</span>
+                <strong>AI / ML</strong>
+            </div>
+
+            <div class="hero-metric metric-two">
+    <span>COVERAGE</span>
+    <strong>GLOBAL</strong>
+</div>
+
+            <div class="hero-metric metric-three">
+                <span>ANALYSIS</span>
+                <strong>LIVE</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INTELLIGENCE BAR -->
+    <div class="hero-intelligence">
+
+        <div>
+            <span>01</span>
+            <strong>Satellite Intelligence</strong>
+        </div>
+
+        <div>
+            <span>02</span>
+            <strong>Environmental Analysis</strong>
+        </div>
+
+        <div>
+            <span>03</span>
+            <strong>ML Prediction</strong>
+        </div>
+
+        <div>
+            <span>04</span>
+            <strong>Drought Decision Support</strong>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ==========================================================
+     MAIN CONTENT
+     ========================================================== -->
+
+<main class="container">
+
+
+    <!-- ======================================================
+         ABOUT PROJECT
+         ====================================================== -->
+
+    <section class="card about-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🌍
+            </span>
+
+            <div>
+
+                <h2>
+                    About the Project
+                </h2>
+
+                <p>
+    An AI-powered geospatial system that analyzes locations and satellite imagery
+    to assess, visualize and predict drought severity across the globe.
+</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         DROUGHT MONITORING DASHBOARD
+         ====================================================== -->
+
+    <section id="dashboard" class="card dashboard-section"></section>
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                📊
+            </span>
+
+            <div>
+
+                <h2>
+                    Drought Monitoring Dashboard
+                </h2>
+
+                <p>
+                    Overview of drought severity and
+                    environmental conditions across
+                    the available dataset.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="dashboardStatus"
+            class="status-message"
+        >
+            Loading dashboard statistics...
+        </div>
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📍
+                </div>
+
+                <div class="stat-label">
+                    Total Locations
+                </div>
+
+                <div
+                    id="totalLocations"
+                    class="stat-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card severity-low">
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
+                <div class="stat-label">
+                    Low
+                </div>
+
+                <div
+                    id="lowCount"
+                    class="stat-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card severity-moderate">
+
+                <div class="stat-icon">
+                    🟡
+                </div>
+
+                <div class="stat-label">
+                    Moderate
+                </div>
+
+                <div
+                    id="moderateCount"
+                    class="stat-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card severity-severe">
+
+                <div class="stat-icon">
+                    🟠
+                </div>
+
+                <div class="stat-label">
+                    Severe
+                </div>
+
+                <div
+                    id="severeCount"
+                    class="stat-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card severity-extreme">
+
+                <div class="stat-icon">
+                    🔴
+                </div>
+
+                <div class="stat-label">
+                    Extreme
+                </div>
+
+                <div
+                    id="extremeCount"
+                    class="stat-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Environmental summary -->
+
+        <div class="environment-summary">
+
+
+            <div class="environment-card">
+
+                <span>
+                    🌱
+                </span>
+
+                <strong>
+                    Average NDVI
+                </strong>
+
+                <div
+                    id="averageNDVI"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="environment-card">
+
+                <span>
+                    🌿
+                </span>
+
+                <strong>
+                    Average Vegetation
+                </strong>
+
+                <div
+                    id="averageVegetation"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <div class="environment-card">
+
+                <span>
+                    💧
+                </span>
+
+                <strong>
+                    Average Water
+                </strong>
+
+                <div
+                    id="averageWater"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         INTERACTIVE DROUGHT SEVERITY MAP
+         ====================================================== -->
+
+    <section id="map-section" class="card map-section"></section>
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🗺️
+            </span>
+
+            <div>
+
+                <h2>
+    Global Drought Intelligence Map
+</h2>
+
+<p>
+    Explore global drought severity patterns using
+    geospatial visualization and AI-based analysis.
+</p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="mapStatus"
+            class="status-message"
+        >
+            Loading locations...
+        </div>
+
+
+        <!-- IMPORTANT:
+             Leaflet requires this exact map element.
+        -->
+
+        <div id="map"></div>
+
+
+
+        <!-- ==================================================
+             MAP FILTERS
+             ================================================== -->
+
+        <div class="filter-panel">
+
+            <h3>
+                Map Filters
+            </h3>
+
+
+            <div class="filter-grid">
+
+
+                <div class="form-group">
+
+                    <label for="yearFilter">
+                        Year
+                    </label>
+
+                    <select
+                        id="yearFilter"
+                    >
+
+                        <option value="all">
+                            All
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="monthFilter">
+                        Month
+                    </label>
+
+                    <select
+                        id="monthFilter"
+                    >
+
+                        <option value="all">
+                            All
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="severityFilter">
+                        Severity
+                    </label>
+
+                    <select
+                        id="severityFilter"
+                    >
+
+                        <option value="all">
+                            All
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Severe">
+                            Severe
+                        </option>
+
+                        <option value="Extreme">
+                            Extreme
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="filter-actions">
+
+                <button
+                    type="button"
+                    id="resetFiltersBtn"
+                    class="secondary-button"
+                    onclick="resetMapFilters()"
+                >
+                    Reset Filters
+                </button>
+
+                <span
+                    id="filterStatus"
+                    class="filter-status"
+                >
+                    Showing all locations.
+                </span>
+
+            </div>
+
+
+            <div class="dataset-records">
+
+                Dataset records:
+
+                <strong id="mapRecordCount">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         LOCATION ANALYSIS
+         ====================================================== -->
+
+    <section class="card location-analysis-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                📍
+            </span>
+
+            <div>
+
+                <h2>
+                    Location Analysis
+                </h2>
+
+                <p>
+                    Select a location from the dataset
+                    to perform detailed drought severity
+                    analysis.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Location search removed -->
+
+
+
+        <div class="location-selection-row">
+
+            <div class="form-group">
+
+                <label for="record_id">
+                    Select Dataset Record
+                </label>
+
+                <select
+                    id="record_id"
+                    name="record_id"
+                >
+
+                    <option value="">
+                        — Select a location —
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                onclick="
+                    const select =
+                    document.getElementById('record_id');
+
+                    if(select && select.value !== ''){
+                        analyzeRecord(
+                            Number(select.value)
+                        );
+                    }
+                "
+            >
+                🔍 Analyze Selected Location
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="selectedLocationInfo"
+            class="location-info"
+        >
+
+            Select a location to view details.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         PREDICTION
+         ====================================================== -->
+
+    <section class="card prediction-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🌾
+            </span>
+
+            <div>
+
+                <h2>
+                    Drought Severity Prediction
+                </h2>
+
+                <p>
+                    The trained machine learning model
+                    uses environmental and remote-sensing
+                    features to predict drought severity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            id="predictionForm"
+        >
+
+            <div
+                id="loading"
+                class="loading-message"
+            >
+            </div>
+
+
+            <h3>
+                Prediction Result
+            </h3>
+
+
+            <div
+                id="result"
+                class="prediction-result-container"
+            >
+
+                Select a location and start analysis.
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         ENVIRONMENTAL INDICATORS
+         ====================================================== -->
+
+    <section class="card indicators-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🌱
+            </span>
+
+            <div>
+
+                <h2>
+                    Environmental Indicators
+                </h2>
+
+                <p>
+                    Environmental and satellite-derived
+                    values used for drought assessment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="indicator-grid">
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    📍
+                </span>
+
+                <strong>
+                    Latitude
+                </strong>
+
+                <span id="indicatorLatitude"></span>
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    📍
+                </span>
+
+                <strong>
+                    Longitude
+                </strong>
+
+                <span id="indicatorLongitude">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    📅
+                </span>
+
+                <strong>
+                    Year
+                </strong>
+
+                <span id="indicatorYear">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    📆
+                </span>
+
+                <strong>
+                    Month
+                </strong>
+
+                <span id="indicatorMonth">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    🌱
+                </span>
+
+                <strong>
+                    NDVI
+                </strong>
+
+                <span id="indicatorNDVI">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    🌿
+                </span>
+
+                <strong>
+                    Vegetation
+                </strong>
+
+                <span id="indicatorVegetation">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    💧
+                </span>
+
+                <strong>
+                    Water
+                </strong>
+
+                <span id="indicatorWater">
+                    —
+                </span>
+
+            </div>
+
+
+
+            <div class="indicator-card">
+
+                <span class="indicator-icon">
+                    ☁️
+                </span>
+
+                <strong>
+                    Cloudiness
+                </strong>
+
+                <span id="indicatorCloudiness">
+                    —
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         DROUGHT ASSESSMENT
+         ====================================================== -->
+
+    <section class="card assessment-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                📊
+            </span>
+
+            <div>
+
+                <h2>
+                    Drought Assessment
+                </h2>
+
+                <p>
+                    Summary of the selected location's
+                    drought-related indicators.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="droughtAssessment"
+            class="assessment-content"
+        >
+
+            Select a location to view the
+            drought assessment.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         SATELLITE IMAGERY
+         ====================================================== -->
+
+    <section class="card satellite-section">
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🛰️
+            </span>
+
+            <div>
+
+                <h2>
+    Satellite Intelligence
+</h2>
+
+<p>
+    Explore multi-source satellite intelligence across
+    vegetation, optical and radar observations for
+    comparative drought assessment.
+</p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="satelliteStatus"
+            class="status-message"
+        >
+            Select a location to load satellite imagery.
+        </div>
+
+
+
+        <!-- NDVI -->
+
+        <div class="imagery-group">
+
+            <h3>
+                🌱 NDVI Imagery
+            </h3>
+
+
+            <div class="imagery-grid">
+
+                <div class="image-card">
+
+                    <h4>
+                        NDVI — Period A
+                    </h4>
+
+                    <img
+                        id="ndviImageA"
+                        alt="NDVI Period A"
+                    >
+
+                    <div
+                        id="ndviA"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="image-card">
+
+                    <h4>
+                        NDVI — Period B
+                    </h4>
+
+                    <img
+                        id="ndviImageB"
+                        alt="NDVI Period B"
+                    >
+
+                    <div
+                        id="ndviB"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RGB -->
+
+        <div class="imagery-group">
+
+            <h3>
+                🌍 RGB Imagery
+            </h3>
+
+
+            <div class="imagery-grid">
+
+                <div class="image-card">
+
+                    <h4>
+                        RGB — Period A
+                    </h4>
+
+                    <img
+                        id="rgbImageA"
+                        alt="RGB Period A"
+                    >
+
+                    <div
+                        id="rgbA"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="image-card">
+
+                    <h4>
+                        RGB — Period B
+                    </h4>
+
+                    <img
+                        id="rgbImageB"
+                        alt="RGB Period B"
+                    >
+
+                    <div
+                        id="rgbB"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SAR VV -->
+
+        <div class="imagery-group">
+
+            <h3>
+                📡 SAR VV Imagery
+            </h3>
+
+
+            <div class="imagery-grid">
+
+                <div class="image-card">
+
+                    <h4>
+                        SAR VV — Period A
+                    </h4>
+
+                    <img
+                        id="vvImageA"
+                        alt="SAR VV Period A"
+                    >
+
+                    <div
+                        id="vvA"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="image-card">
+
+                    <h4>
+                        SAR VV — Period B
+                    </h4>
+
+                    <img
+                        id="vvImageB"
+                        alt="SAR VV Period B"
+                    >
+
+                    <div
+                        id="vvB"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SAR VH -->
+
+        <div class="imagery-group">
+
+            <h3>
+                📡 SAR VH Imagery
+            </h3>
+
+
+            <div class="imagery-grid">
+
+                <div class="image-card">
+
+                    <h4>
+                        SAR VH — Period A
+                    </h4>
+
+                    <img
+                        id="vhImageA"
+                        alt="SAR VH Period A"
+                    >
+
+                    <div
+                        id="vhA"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="image-card">
+
+                    <h4>
+                        SAR VH — Period B
+                    </h4>
+
+                    <img
+                        id="vhImageB"
+                        alt="SAR VH Period B"
+                    >
+
+                    <div
+                        id="vhB"
+                        class="image-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         DROUGHT ANALYTICS
+         ====================================================== -->
+
+    <section id="analytics" class="card analytics-section"></section>
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                📈
+            </span>
+
+            <div>
+
+                <h2>
+                    Drought Analytics
+                </h2>
+
+                <p>
+                    Visual analysis of drought severity
+                    and environmental conditions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="charts-grid">
+
+
+            <div class="chart-card">
+
+                <h3>
+                    Drought Severity Distribution
+                </h3>
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="severityChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="chart-card">
+
+                <h3>
+                    Average NDVI by Severity
+                </h3>
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="ndviChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="chart-card">
+
+                <h3>
+                    Vegetation by Severity
+                </h3>
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="vegetationChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="chart-card">
+
+                <h3>
+                    Year-wise Drought Severity
+                </h3>
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="yearSeverityChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         VERSION 2
+         ANALYZE ANY LOCATION
+         ====================================================== -->
+
+    <section id="ai-analysis" class="card version2-section"></section>
+
+        <div class="section-heading">
+
+            <span class="section-icon">
+                🔎
+            </span>
+
+            <div>
+
+                <h2>
+     AI Drought Analysis
+</h2>
+
+<p>
+    Analyze any location using environmental data
+    or satellite imagery and receive an AI-powered
+    drought severity assessment.
+</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             OPTION 1 — LOCATION
+             ================================================== -->
+
+        <div class="version2-option">
+
+            <div class="option-heading">
+
+                <span>
+                    📍
+                </span>
+
+                <h3>
+                    Option 1 — Enter Location
+                </h3>
+
+            </div>
+
+
+            <p>
+                Enter the latitude and longitude
+                of the location you want to analyze.
+            </p>
+
+
+            <div class="coordinate-grid">
+
+
+                <div class="form-group">
+
+                    <label for="newLatitude">
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="newLatitude"
+                        step="any"
+                        min="-90"
+                        max="90"
+                        placeholder="Example: 20.2961"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="newLongitude">
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="newLongitude"
+                        step="any"
+                        min="-180"
+                        max="180"
+                        placeholder="Example: 85.8245"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                id="analyzeLocationBtn"
+                class="primary-button"
+            >
+                📍 Analyze This Location
+            </button>
+
+        </div>
+
+
+
+        <div class="or-divider">
+
+            <span>
+                OR
+            </span>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             OPTION 2 — IMAGE
+             ================================================== -->
+
+        <div class="version2-option">
+
+            <div class="option-heading">
+
+                <span>
+                    🛰️
+                </span>
+
+                <h3>
+                    Option 2 — Upload Satellite Image
+                </h3>
+
+            </div>
+
+
+            <p>
+                Upload compatible satellite imagery
+                for drought analysis.
+            </p>
+
+
+            <div class="upload-area">
+
+                <label for="satelliteUpload">
+                    Select Satellite Image
+                </label>
+
+                <input
+                    type="file"
+                    id="satelliteUpload"
+                    accept=".tif,.tiff,.png,.jpg,.jpeg"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                id="analyzeImageBtn"
+                class="primary-button"
+            >
+                🛰️ Analyze Uploaded Image
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             VERSION 2 RESULT
+             ================================================== -->
+
+        <div class="version2-result">
+
+            <h3>
+                Prediction Result
+            </h3>
+
+
+            <div
+                id="newLocationPrediction"
+                class="new-location-result"
+            >
+
+                Enter a location or upload
+                satellite imagery to begin analysis.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
+
+<footer class="main-footer">
+
+    <p>
+        🌾 Drought Severity Mapping Project
+    </p>
+
+    <p class="footer-small">
+        AI-Based Drought Severity Prediction
+        and Monitoring System
+    </p>
+
+</footer>
+
+
+
+<!-- ==========================================================
+     CHART.JS
+     ========================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
+</script>
+
+
+
+<!-- ==========================================================
+     LEAFLET JAVASCRIPT
+     IMPORTANT:
+     Leaflet MUST load BEFORE script.js
+     ========================================================== -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+
+<!-- ==========================================================
+     PROJECT JAVASCRIPT
+     ========================================================== -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+
+</body>
+
+</html>
