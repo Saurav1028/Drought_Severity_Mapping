@@ -1,0 +1,24 @@
+Latitud
+Longitudes
+Cloudiness Mean
+Water percentage Mean
+Vegetation percentage Mean
+Year
+Month
+Duration_Days
+NDVI_Mean_A
+NDVI_Std_A
+RGB_Mean_A
+RGB_Std_A
+VV_Mean_A
+VV_Std_A
+VH_Mean_A
+VH_Std_A
+NDVI_Mean_B
+NDVI_Std_B
+RGB_Mean_B
+RGB_Std_B
+VV_Mean_B
+VV_Std_B
+VH_Mean_B
+VH_Std_B
