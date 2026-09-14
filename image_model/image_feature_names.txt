@@ -1,0 +1,5 @@
+image_mean
+image_std
+image_min
+image_max
+image_median
