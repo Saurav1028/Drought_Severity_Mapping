@@ -9,3 +9,4 @@ scikit-learn
 openpyxl
 gunicorn
 requests
+python-dotenv
