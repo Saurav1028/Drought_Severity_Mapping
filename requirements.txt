@@ -7,3 +7,4 @@ rasterio
 Pillow
 scikit-learn
 openpyxl
+gunicorn
